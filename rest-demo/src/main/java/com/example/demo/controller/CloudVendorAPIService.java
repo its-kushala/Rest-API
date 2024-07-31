@@ -2,17 +2,25 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.CloudVendor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cloudvendor")
 public class CloudVendorAPIService
 {
+    CloudVendor cloudVendor;
+
     @GetMapping("{VendorID}")
     public CloudVendor getCloudVendorDetails(String vendorId)
     {
-        return new CloudVendor("CV1" , "Vendor" , "Address one" , "#####");
+        return cloudVendor;
+                //new CloudVendor("CV1" , "Vendor" , "Address one" , "#####");
+    }
+
+    @PostMapping
+    public String createCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
+    {
+        this.cloudVendor = cloudVendor;
+        return "Cloud Vendor Created Successfully";
     }
 }
